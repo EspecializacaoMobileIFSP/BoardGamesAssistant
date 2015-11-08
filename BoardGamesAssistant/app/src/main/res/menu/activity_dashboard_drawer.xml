@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_counter"
-            android:title="Chess Counter"/>
+            android:id="@+id/nav_chess_timer"
+            android:title="@string/action_chess_timer"/>
         <item
             android:id="@+id/nav_dice"
-            android:title="Dice"/>
+            android:title="@string/action_dice"/>
         <item
             android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="Settings"/>
+            android:title="@string/action_settings"/>
     </group>
 </menu>

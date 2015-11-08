@@ -4,5 +4,17 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="action_chess_timer">Chess Timer</string>
+    <string name="action_dice">Dice</string>
     <string name="action_settings">Settings</string>
+
+    <string name="title_activity_chess_timer">Chess Timer</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="lbl_save">Save</string>
+    <string name="lbl_game_over">Game over</string>
+    <string name="msg_settings_successful">Settings saved successfully.</string>
+    <string name="lbl_initial_time_chess">Chess Initial Time (minutes)</string>
+
+
 </resources>

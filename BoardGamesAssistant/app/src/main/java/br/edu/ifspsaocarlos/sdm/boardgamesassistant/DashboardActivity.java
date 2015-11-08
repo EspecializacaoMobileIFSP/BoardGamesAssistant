@@ -1,5 +1,6 @@
 package br.edu.ifspsaocarlos.sdm.boardgamesassistant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,6 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.ChessTimerActivity;
+import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.SettingsActivity;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +48,11 @@ public class DashboardActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
+            case R.id.nav_chess_timer:
+                startActivity(new Intent(this, ChessTimerActivity.class));
+                break;
             case R.id.nav_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
 
