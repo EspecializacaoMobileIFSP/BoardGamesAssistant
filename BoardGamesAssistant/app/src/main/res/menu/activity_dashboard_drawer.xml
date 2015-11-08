@@ -3,6 +3,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_chess_timer"
+            android:icon="@mipmap/ic_chess"
             android:title="@string/action_chess_timer"/>
         <item
             android:id="@+id/nav_dice"
