@@ -15,6 +15,20 @@
     <string name="lbl_game_over">Game over</string>
     <string name="msg_settings_successful">Settings saved successfully.</string>
     <string name="lbl_initial_time_chess">Chess Initial Time (minutes)</string>
+    <string name="title_activity_dice">DiceActivity</string>
 
+
+    <string name="txt_choose_message">Choose one dice below</string>
+
+    <string name="snc_try_again">Try again!</string>
+
+    <array name="arr_dice_type">
+        <item>D4</item>
+        <item>D6</item>
+        <item>D8</item>
+        <item>D10</item>
+        <item>D12</item>
+        <item>D20</item>
+    </array>
 
 </resources>

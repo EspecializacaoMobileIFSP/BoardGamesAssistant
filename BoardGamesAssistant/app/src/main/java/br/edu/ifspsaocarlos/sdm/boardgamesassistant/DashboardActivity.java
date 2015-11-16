@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.ChessTimerActivity;
+import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.DiceActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.SettingsActivity;
 
 public class DashboardActivity extends AppCompatActivity
@@ -50,6 +51,9 @@ public class DashboardActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_chess_timer:
                 startActivity(new Intent(this, ChessTimerActivity.class));
+                break;
+            case R.id.nav_dice:
+                DiceActivity.start(this);
                 break;
             case R.id.nav_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
