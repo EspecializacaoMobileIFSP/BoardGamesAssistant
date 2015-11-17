@@ -5,9 +5,16 @@
             android:id="@+id/nav_chess_timer"
             android:icon="@mipmap/ic_chess"
             android:title="@string/action_chess_timer"/>
+
         <item
             android:id="@+id/nav_dice"
             android:title="@string/action_dice"/>
+
+        <item
+            android:id="@+id/nav_blackjack"
+            android:icon="@mipmap/ic_blackjack"
+            android:title="@string/action_blackjack"/>
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_manage"
