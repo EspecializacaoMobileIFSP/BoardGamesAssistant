@@ -15,6 +15,8 @@
 
     <string name="lbl_save">Save</string>
     <string name="lbl_game_over">Game over</string>
+    <string name="lbl_score">Score</string>
+    <string name="lbl_dealer_score">Dealer Score:</string>
     <string name="msg_settings_successful">Settings saved successfully.</string>
     <string name="lbl_initial_time_chess">Chess Initial Time (minutes)</string>
     <string name="title_activity_dice">DiceActivity</string>
@@ -23,6 +25,13 @@
     <string name="txt_choose_message">Choose one dice below</string>
 
     <string name="snc_try_again">Try again!</string>
+    <string name="lbl_busted">Busted!</string>
+    <string name="lbl_stand">stand</string>
+    <string name="lbl_hit">hit</string>
+    <string name="msg_initial_blackjack">Click on \'Hit\' Button to start the game!</string>
+    <string name="lbl_player_score">Player Score</string>
+    <string name="msg_you_lose">You Lose!</string>
+    <string name="msg_you_win">You Win!</string>
 
     <array name="arr_dice_type">
         <item>D4</item>
