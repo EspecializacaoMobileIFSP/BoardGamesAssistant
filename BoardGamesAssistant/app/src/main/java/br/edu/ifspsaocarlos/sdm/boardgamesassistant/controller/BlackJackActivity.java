@@ -20,17 +20,15 @@ import java.util.List;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.R;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.entity.CardEnum;
 
-import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.color;
 import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.id;
 import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.layout;
-import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.string;
 
 /**
  * @author maiko.trindade
  */
 public class BlackJackActivity extends AppCompatActivity {
 
-    private final static int WAITING_TIME_IN_SEC = 4 * 1000;
+    private final static int WAITING_TIME_IN_SEC = 5 * 1000;
     private final static int BLACKJACK_NUMBER = 21;
 
     private LinearLayout mContainerBlackJack, mContainerDealer;
@@ -46,6 +44,7 @@ public class BlackJackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_black_jack);
 
+        //toolbar handling
         Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,13 +84,15 @@ public class BlackJackActivity extends AppCompatActivity {
                     mTurns++;
                     final ImageView cardImage = new ImageView(getBaseContext());
                     cardImage.setImageDrawable(getResources().getDrawable(card.getImageResId()));
+
+                    //remove former card and add a new player's card on the screen
                     mContainerBlackJack.removeAllViews();
                     mContainerBlackJack.addView(cardImage, new LinearLayout.LayoutParams(340, 340));
                 } else {
                     playerBusted();
                 }
 
-                //enable button 'stand' after first turn
+                //enable button 'stand' after the first turn
                 if (mTurns > 0) {
                     mBtnStand.setEnabled(true);
                 }
@@ -122,41 +123,61 @@ public class BlackJackActivity extends AppCompatActivity {
         generateRandomCardsList();
         mTurns = 0;
 
-        //while dealer is not the winner and he didn't get busted, he keeps playing!
+        /**
+         * while dealer is not the winner and he didn't get busted, he keeps playing!
+         */
         while (mDealerScore <= mPlayerScore) {
             mTurns++;
+
             final CardEnum card = mCards.get(mTurns);
             mDealerScore += card.getValue();
             mTxtDealerScore.setText(getString(R.string.lbl_dealer_score) + " " + String.valueOf(mDealerScore));
             final ImageView cardImage = new ImageView(getBaseContext());
             cardImage.setImageDrawable(getResources().getDrawable(card.getImageResId()));
+
+            //add a new dealer's card on the screen
             mContainerDealer.addView(cardImage, new LinearLayout.LayoutParams(120, 160));
         }
 
-        //Dealer will have more score than player anyway, just check if this score is still valid
-        if (mDealerScore <= BLACKJACK_NUMBER) {
+        defineWinner();
+    }
+
+    private void defineWinner() {
+        /**
+         * It will be a draw game only if the dealer and the player scores the
+         * BLACKJACK_NUMBER at the same time
+         */
+        if (mDealerScore == mPlayerScore && mDealerScore == BLACKJACK_NUMBER) {
+            drawGame();
+        } else if (mDealerScore > mPlayerScore && mDealerScore <= BLACKJACK_NUMBER) {
+            //the dealer wins
             playerDefeat();
         } else {
+            //the dealer loses
             playerVictory();
         }
+    }
 
+    private void drawGame() {
+        showResultDialog(R.string.msg_draw_game);
+        restartGame();
     }
 
     private void playerBusted() {
-        mTxtScoreLabel.setTextColor(getResources().getColor(color.material_red_600));
-        mTxtScoreLabel.setText(string.lbl_busted);
+        mTxtScoreLabel.setTextColor(getResources().getColor(R.color.material_red_600));
+        mTxtScoreLabel.setText(R.string.lbl_busted);
         playerDefeat();
     }
 
     private void playerDefeat() {
-        mTxtScoreValue.setTextColor(getResources().getColor(color.material_red_600));
-        showResultDialog(string.msg_you_lose);
+        mTxtScoreValue.setTextColor(getResources().getColor(R.color.material_red_600));
+        showResultDialog(R.string.msg_you_lose);
         restartGame();
     }
 
 
     private void playerVictory() {
-        showResultDialog(string.msg_you_win);
+        showResultDialog(R.string.msg_you_win);
         restartGame();
     }
 

@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.R;
 
 /**
- * Activity responsável por apresentar informações sobre o app e seus desenvolvedores
- *
  * @author maiko.trindade
  */
 public class AboutActivity extends AppCompatActivity {

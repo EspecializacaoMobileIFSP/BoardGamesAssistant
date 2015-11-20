@@ -23,11 +23,14 @@
         <activity
             android:name=".controller.ChessTimerActivity"
             android:label="@string/title_activity_chess_timer"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".controller.SettingsActivity"
+            android:parentActivityName=".DashboardActivity"
             android:label="@string/title_activity_settings"/>
+
         <activity android:name=".controller.AboutActivity"/>
 
         <activity
@@ -44,6 +47,8 @@
         <activity
             android:name=".controller.BlackJackActivity"
             android:label="@string/title_activity_blackjack"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

@@ -14,7 +14,7 @@ import br.edu.ifspsaocarlos.sdm.boardgamesassistant.component.ChessTimer;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.util.SharedPrefsUtil;
 
 /**
- * Activity responsável por apresentar um contador para o jogo de Xadrez
+ * Activity responsible for provide a chess' timer
  *
  * @author maiko.trindade
  */
@@ -37,9 +37,6 @@ public class ChessTimerActivity extends AppCompatActivity {
         configureTimers();
     }
 
-    /**
-     * Realiza bind dos elementos utilizados na view
-     */
     private void bindElements() {
         mTimerTextOne = (TextView) findViewById(R.id.timer_player_one);
         mTimerTextTwo = (TextView) findViewById(R.id.timer_player_two);
@@ -47,14 +44,12 @@ public class ChessTimerActivity extends AppCompatActivity {
         mContainerPlayerTwo = (LinearLayout) findViewById(R.id.container_player_two);
     }
 
-    /**
-     * Configura os eventos de click nos containers
-     */
     private void configureContainers() {
         mContainerPlayerOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mTimerOne.isPaused()) {
+                //handling one player at time
+                if (mTimerOne.isPaused() && mTimerTwo.isPaused()) {
                     mTimerOne.start();
                 } else {
                     mTimerOne.pause();
@@ -65,7 +60,8 @@ public class ChessTimerActivity extends AppCompatActivity {
         mContainerPlayerTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mTimerTwo.isPaused()) {
+                //handling one player at time
+                if (mTimerTwo.isPaused() && mTimerOne.isPaused()) {
                     mTimerTwo.start();
                 } else {
                     mTimerTwo.pause();
@@ -75,16 +71,13 @@ public class ChessTimerActivity extends AppCompatActivity {
     }
 
     /**
-     * Configura os timers dos jogadores
+     * It configures the players' timers
      */
     private void configureTimers() {
         mTimerOne = new ChessTimer(mInitialTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimerTextOne.setText(String.format("%02d:%02d:%02d",
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % TimeUnit.HOURS.toMinutes(1),
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % TimeUnit.HOURS.toMinutes(1),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % TimeUnit.MINUTES.toSeconds(1)));
+                mTimerTextOne.setText(getFormattedTime(millisUntilFinished));
             }
 
             @Override
@@ -96,10 +89,7 @@ public class ChessTimerActivity extends AppCompatActivity {
         mTimerTwo = new ChessTimer(mInitialTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimerTextTwo.setText(String.format("%02d:%02d:%02d",
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % TimeUnit.HOURS.toMinutes(1),
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % TimeUnit.HOURS.toMinutes(1),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % TimeUnit.MINUTES.toSeconds(1)));
+                mTimerTextTwo.setText(getFormattedTime(millisUntilFinished));
             }
 
             @Override
@@ -109,8 +99,15 @@ public class ChessTimerActivity extends AppCompatActivity {
         };
     }
 
+    private String getFormattedTime(long milis) {
+        return String.format("%02d:%02d:%02d",
+                TimeUnit.MILLISECONDS.toHours(milis) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toMinutes(milis) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(milis) % TimeUnit.MINUTES.toSeconds(1));
+    }
+
     /**
-     * paralisa o jogo caso a Activity perca o foco
+     * It's stops the game in case of the Activity loses the focus
      */
     @Override
     protected void onPause() {

@@ -3,8 +3,8 @@ package br.edu.ifspsaocarlos.sdm.boardgamesassistant.component;
 import android.os.CountDownTimer;
 
 /**
- * Classe responsável por adicionar a funcionalidade de 'pause' no CountDownTimer nativo
- * da Google (http://developer.android.com/intl/pt-br/reference/android/os/CountDownTimer.html)
+ * Class responsible for add 'pause' feature in a native Android CountDownTimer
+ * (http://developer.android.com/intl/pt-br/reference/android/os/CountDownTimer.html)
  *
  * @author maiko.trindade
  */
@@ -21,9 +21,6 @@ public abstract class ChessTimer {
         this.countDownInterval = countDownInterval;
     }
 
-    /**
-     * Cria um contador do tipo nativo CountDownTimer no qual chama a ChessTimer
-     */
     private void createTimer() {
         mCountDownTimer = new CountDownTimer(millisRemaining, countDownInterval) {
 
@@ -41,21 +38,16 @@ public abstract class ChessTimer {
     }
 
     /**
-     * Retorna o valor da contagem em milis
-     *
-     * @param millisUntilFinished
+     * It returns a counting value in milis
      */
     public abstract void onTick(long millisUntilFinished);
 
-    /**
-     * Metodo chamado ao termino da contagem
-     */
     public abstract void onFinish();
 
     /**
-     * inicia ou despausa o contador
+     * It starts or stops the counter
      *
-     * @return contador regressico pausavel
+     * @return timer
      */
     public synchronized final ChessTimer start() {
         if (mIsPaused) {
@@ -66,9 +58,6 @@ public abstract class ChessTimer {
         return this;
     }
 
-    /**
-     * pausa o contador
-     */
     public void pause() {
         if (mIsPaused == false) {
             mCountDownTimer.cancel();
@@ -76,11 +65,6 @@ public abstract class ChessTimer {
         mIsPaused = true;
     }
 
-    /**
-     * verificar se o contador esta pausado
-     *
-     * @return pause do contador
-     */
     public boolean isPaused() {
         return mIsPaused;
     }

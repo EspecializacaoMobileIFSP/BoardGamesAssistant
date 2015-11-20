@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BoardGamesAssistant</string>
+    <string name="app_name">Board Games Assistant</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,7 +21,6 @@
     <string name="lbl_initial_time_chess">Chess Initial Time (minutes)</string>
     <string name="title_activity_dice">DiceActivity</string>
 
-
     <string name="txt_choose_message">Choose one dice below</string>
 
     <string name="snc_try_again">Try again!</string>
@@ -32,6 +31,7 @@
     <string name="lbl_player_score">Player Score</string>
     <string name="msg_you_lose">You Lose!</string>
     <string name="msg_you_win">You Win!</string>
+    <string name="msg_draw_game">Draw Game!</string>
 
     <array name="arr_dice_type">
         <item>D4</item>
