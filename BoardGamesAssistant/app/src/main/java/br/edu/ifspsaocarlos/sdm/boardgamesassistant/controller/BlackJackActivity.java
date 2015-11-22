@@ -1,9 +1,12 @@
 package br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -38,6 +41,13 @@ public class BlackJackActivity extends AppCompatActivity {
     private int mPlayerScore;
     private int mDealerScore;
     private int mTurns;
+
+    public static void start(Activity activity) {
+        ActivityCompat.startActivity(
+                activity, new Intent(activity, BlackJackActivity.class),
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle()
+        );
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,18 +196,19 @@ public class BlackJackActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-
                 //restart activity after the 'waiting time'
-                final Intent gameIntent = getIntent();
+                start(BlackJackActivity.this);
                 finish();
-                startActivity(gameIntent);
             }
         }, WAITING_TIME_IN_SEC);
     }
 
     private void disableActions() {
         mBtnHit.setEnabled(false);
+        mBtnHit.setOnClickListener(null);
+
         mBtnStand.setEnabled(false);
+        mBtnStand.setOnClickListener(null);
     }
 
     private void showResultDialog(final int messageResId) {

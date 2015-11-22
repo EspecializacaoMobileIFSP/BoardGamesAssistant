@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,23 @@ public class DiceActivity extends AppCompatActivity {
         imgDice = (ImageView) findViewById(R.id.img_dice);
 
         listeners();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int returnCode, Intent data) {
+        if (requestCode == RESULT_OK && returnCode == RESULT_OK) {
+            int round = data.getExtras().getInt("rounds");
+            View view = findViewById(R.id.fab);
+            Snackbar.make(
+                    view,
+                    (round > 1)
+                            ? String.format("Você jogou %d vezes", round)
+                            : (round > 0)
+                            ? "Você jogou  1 vez"
+                            : ("Você não jogou nenhuma vez"),
+                    Snackbar.LENGTH_INDEFINITE
+            ).setAction("ok", null).show();
+        }
     }
 
     private void listeners() {

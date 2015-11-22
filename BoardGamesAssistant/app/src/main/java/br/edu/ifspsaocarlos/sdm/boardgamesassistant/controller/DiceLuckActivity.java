@@ -22,6 +22,8 @@ public class DiceLuckActivity extends AppCompatActivity implements Runnable {
 
     private FloatingActionButton fab;
     private AppCompatTextView txtFace;
+    private int round;
+
 
     private int face;
 
@@ -65,9 +67,12 @@ public class DiceLuckActivity extends AppCompatActivity implements Runnable {
     }
 
     private void initialize() {
+        round = 0;
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                round += 1;
                 int loop = (new Random().nextInt(face) + 1) * (new Random().nextInt(face) + 1);
 
                 for (int i = 0; i < loop; i++) {
