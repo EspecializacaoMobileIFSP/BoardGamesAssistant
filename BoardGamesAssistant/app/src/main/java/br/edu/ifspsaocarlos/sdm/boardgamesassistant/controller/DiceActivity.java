@@ -16,7 +16,13 @@ import android.widget.ImageView;
 
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.R;
 
+/**
+ * Class responsible for select the dice
+ * @author: Denis Wilson de Souza Oliveira
+ */
 public class DiceActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE_PLAYS = 100;
 
     private static final int DICE_TETRAHEDRON = 0;
     private static final int DICE_CUBE = 1;
@@ -42,6 +48,7 @@ public class DiceActivity extends AppCompatActivity {
         face = 0;
     }
 
+    // The new standard to start an activity with ActivityCompat
     public static void start(Activity activity) {
         Intent starter = new Intent(activity, DiceActivity.class);
         ActivityCompat.startActivity(activity, starter,
@@ -61,13 +68,14 @@ public class DiceActivity extends AppCompatActivity {
         spnDice = (AppCompatSpinner) findViewById(R.id.spn_dice);
         imgDice = (ImageView) findViewById(R.id.img_dice);
 
+        // Initialize listeners
         listeners();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int returnCode, Intent data) {
-        if (requestCode == RESULT_OK && returnCode == RESULT_OK) {
-            int round = data.getExtras().getInt("rounds");
+        if (requestCode == REQUEST_CODE_PLAYS && returnCode == RESULT_OK) {
+            int round = data.getExtras().getInt("round");
             View view = findViewById(R.id.fab);
             Snackbar.make(
                     view,
@@ -81,6 +89,7 @@ public class DiceActivity extends AppCompatActivity {
         }
     }
 
+    // Initialize listeners
     private void listeners() {
         spnDice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -128,7 +137,7 @@ public class DiceActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DiceLuckActivity.start(DiceActivity.this, face);
+                DiceLuckActivity.start(DiceActivity.this, REQUEST_CODE_PLAYS, face);
             }
         });
     }

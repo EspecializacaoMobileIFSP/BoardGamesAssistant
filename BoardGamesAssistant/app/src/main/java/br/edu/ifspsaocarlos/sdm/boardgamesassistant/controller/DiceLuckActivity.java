@@ -10,27 +10,32 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.Random;
 
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.R;
 
+/**
+ * Class responsible for generate random numbers
+ * @author: Denis Wilson de Souza Oliveira
+ */
 public class DiceLuckActivity extends AppCompatActivity implements Runnable {
 
     private static final String EXTRA_FACE = "FACE";
 
-    private FloatingActionButton fab;
-    private AppCompatTextView txtFace;
     private int round;
-
-
     private int face;
 
-    public static void start(Activity activity, int value) {
+    private FloatingActionButton fab;
+    private AppCompatTextView txtFace;
+
+    // The new standard to start an activity with ActivityCompat
+    public static void start(Activity activity, int requestCode, int value) {
         Intent starter = new Intent(activity, DiceLuckActivity.class);
         starter.putExtra(EXTRA_FACE, value);
-        ActivityCompat.startActivity(activity, starter,
+        ActivityCompat.startActivityForResult(activity, starter, requestCode,
                 ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
     }
 
@@ -39,19 +44,41 @@ public class DiceLuckActivity extends AppCompatActivity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice_luck);
 
+        // Get a random face to initialize activity
         face = getFace();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         txtFace = (AppCompatTextView) findViewById(R.id.txt_face);
 
+        // Initialize listeners
         initialize();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void finish() {
+        // Set the result to other activity
+        // Return the rounds number
+        setResult(RESULT_OK, new Intent().putExtra("round", round));
+        super.finish();
+    }
+
+    // Run the random generator face method
     @Override
     public void run() {
         genFace();
     }
 
+    // Get the face number
     private int getFace() {
         final Intent intent = getIntent();
         int face = 0;
@@ -61,11 +88,13 @@ public class DiceLuckActivity extends AppCompatActivity implements Runnable {
         return face;
     }
 
+    // Get a random face
     private void genFace() {
         String value = "" + (new Random().nextInt(face) + 1);
         txtFace.setText(value);
     }
 
+    // Initialize listeners
     private void initialize() {
         round = 0;
 

@@ -42,4 +42,7 @@
         <item>D20</item>
     </array>
 
+    <string name="txt_student">Student:</string>
+    <string name="denis">Denis Wilson de Souza Oliveira</string>
+    <string name="maiko">Maiko Charles de Souza Trindade</string>
 </resources>
