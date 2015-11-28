@@ -27,6 +27,8 @@ import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.id;
 import static br.edu.ifspsaocarlos.sdm.boardgamesassistant.R.layout;
 
 /**
+ * Activity responsible for handle the game BlackJack
+ *
  * @author maiko.trindade
  */
 public class BlackJackActivity extends AppCompatActivity {
@@ -42,6 +44,10 @@ public class BlackJackActivity extends AppCompatActivity {
     private int mDealerScore;
     private int mTurns;
 
+    /**
+     * It makes the transaction animation happens
+     * @param activity
+     */
     public static void start(Activity activity) {
         ActivityCompat.startActivity(
                 activity, new Intent(activity, BlackJackActivity.class),
@@ -168,29 +174,43 @@ public class BlackJackActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * it shows a 'Draw Game' to the user and restart the game
+     */
     private void drawGame() {
         showResultDialog(R.string.msg_draw_game);
         restartGame();
     }
 
+    /**
+     * the player got busted (exceeded the score's limit)
+     */
     private void playerBusted() {
         mTxtScoreLabel.setTextColor(getResources().getColor(R.color.material_red_600));
         mTxtScoreLabel.setText(R.string.lbl_busted);
         playerDefeat();
     }
 
+    /**
+     * the player lost the match
+     */
     private void playerDefeat() {
         mTxtScoreValue.setTextColor(getResources().getColor(R.color.material_red_600));
         showResultDialog(R.string.msg_you_lose);
         restartGame();
     }
 
-
+    /**
+     * the player won the match
+     */
     private void playerVictory() {
         showResultDialog(R.string.msg_you_win);
         restartGame();
     }
 
+    /**
+     * restart the match with an animation
+     */
     private void restartGame() {
         disableActions();
         final Handler handler = new Handler();
@@ -203,6 +223,10 @@ public class BlackJackActivity extends AppCompatActivity {
         }, WAITING_TIME_IN_SEC);
     }
 
+    /**
+     * Disable actions while the transaction between games is happening,
+     * to avoid the user to touch in anywhere bad
+     */
     private void disableActions() {
         mBtnHit.setEnabled(false);
         mBtnHit.setOnClickListener(null);

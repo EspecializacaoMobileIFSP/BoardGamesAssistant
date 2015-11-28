@@ -7,7 +7,7 @@
     android:background="#000000"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DashboardActivity"
+    tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_dashboard">
 
     <View

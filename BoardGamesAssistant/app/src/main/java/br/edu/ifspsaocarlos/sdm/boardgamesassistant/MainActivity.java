@@ -10,18 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.AboutActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.BlackJackActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.ChessTimerActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.DiceActivity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.controller.SettingsActivity;
 
-public class DashboardActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,6 +62,9 @@ public class DashboardActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                break;
+            case R.id.nav_about:
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
         }
 

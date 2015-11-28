@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Class util para manipular informacoes de SharedPreferences
+ * Useful class for handle information about SharedPreferences
  *
  * @author maiko.trindade
  */

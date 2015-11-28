@@ -37,6 +37,7 @@ public class ChessTimerActivity extends AppCompatActivity {
         configureTimers();
     }
 
+
     private void bindElements() {
         mTimerTextOne = (TextView) findViewById(R.id.timer_player_one);
         mTimerTextTwo = (TextView) findViewById(R.id.timer_player_two);
@@ -44,6 +45,9 @@ public class ChessTimerActivity extends AppCompatActivity {
         mContainerPlayerTwo = (LinearLayout) findViewById(R.id.container_player_two);
     }
 
+    /**
+     * configure listeners that allow only one player's timer loading at the same time
+     */
     private void configureContainers() {
         mContainerPlayerOne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +120,9 @@ public class ChessTimerActivity extends AppCompatActivity {
         mTimerTwo.pause();
     }
 
+    /**
+     * Load data from SharedPreferences if it exists
+     */
     private void loadPreferences() {
         final SharedPreferences preferences = SharedPrefsUtil.getPrefs(getBaseContext());
         String initialTimeChess = preferences.getString(SharedPrefsUtil.Key.CHESS_INITIAL_TIME.name(),

@@ -3,6 +3,8 @@ package br.edu.ifspsaocarlos.sdm.boardgamesassistant.entity;
 import br.edu.ifspsaocarlos.sdm.boardgamesassistant.R;
 
 /**
+ * Class that represents an enumeration of cards
+ *
  * @author maiko.trindade
  */
 public enum CardEnum {
